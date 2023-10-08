@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+         
+        }
+        div{
+            width: 30vw;
+            height: 80vh;
+            background-color: aqua;
+            position: relative;
+            transform:translate(110%,5%);
+            overflow: hidden;
+            align-items: center;
+            display: flex;
+            border-radius: 5px;
+        }
+        div::before{
+            content: "";
+            width: 170%;
+            height: 170%;
+            margin-left:-40%;
+            background-image: linear-gradient(to right,red,green,yellow);
+            position: absolute;
+            animation: 3s spin infinite ease-in;
+            
+
+        }
+        @keyframes spin{
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+        form{
+            inset: 2px;
+            display: grid;
+            grid-template-columns: 40px 40px 40px 40px;
+            grid-template-areas: 
+            'full1 full1 full1 full1' 
+             'full2 full2 full2 full2' 
+             ' inp1 inp1 inp1 inp1'
+             ' inp1 inp1 inp1 inp1'
+             ' inp1 inp1 inp1 inp1'
+             ' inp1 inp1 inp1 inp1'
+             'full3 full3 full3 full3'                    ; 
+            gap: 10px;
+          background-color: rgb(255, 255, 255);
+           justify-content: center;
+           padding: 10px;
+           position: absolute;
+           border-radius: 5px;
+        }
+        input{
+            border-radius: 5px;
+            border: 0;
+        }
+        #old{
+            grid-area: full1;
+        }
+        #new{
+            grid-area: full2;
+            outline: 0.2px solid grey;
+           
+        }
+        #ans{
+            grid-area: full3;
+        }
+         #old,#new{
+            border: 0;
+            text-align: end;
+            border-radius: 0;
+         }
+         input:hover {
+            background-color: rgb(11, 165, 242);
+            border: 0;
+            border-radius: 5px;
+         }
+         #new:hover,#old:hover{
+            background-color: rgb(255, 255, 255);
+         }
+         
+        #new:focus{
+            box-shadow: 1px 1px 15px rgb(11, 165, 242);
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form name="calform">
+            <!-- it is used for show newinput -->
+            <input id="old" type="text" name="oldinput" disabled>
+            <input id="new" type="text" value="0" name="newinput">
+            <input type="button" value="1" onclick="calform.newinput.value+=1">
+            <input type="button" value="2" onclick="calform.newinput.value+=2">
+            <input type="button" value="3" onclick="calform.newinput.value+=3">
+            <input type="button" value="4" onclick="calform.newinput.value+=4">
+            <input type="button" value="5" onclick="calform.newinput.value+=5">
+            <input type="button" value="6" onclick="calform.newinput.value+=6">
+            <input type="button" value="7" onclick="calform.newinput.value+=7">
+            <input type="button" value="8" onclick="calform.newinput.value+=8">
+            <input type="button" value="9" onclick="calform.newinput.value+=9">
+            <input type="button" value="0" onclick="calform.newinput.value+=0">
+            <input type="button" value="+" onclick="calform.newinput.value+='+'">
+            <input type="button" value="-" onclick="calform.newinput.value+='-'">
+            <input type="button" value="%" onclick="calform.newinput.value+='%'">
+            <input type="button" value="*" onclick="calform.newinput.value+='*'">
+            <input type="button" value="/" onclick="calform.newinput.value+='/'">
+            <input type="button" value="clear"  onclick="calform.newinput.value=' '">
+            <input id="ans" type="button" value="ans" onclick="send()">
+        </form>
+    </div>
+   
+    <script>
+            let x=document.forms["calform"]["newinput"];
+            let  y=document.forms["calform"]["oldinput"]; 
+
+        function send(){
+            if(x.value==0){
+                y.value="";
+            }
+            else{
+                y.value=x.value+"=";
+            }
+            
+             x.value=eval(x.value);
+             alert(y)
+             
+        }
+          
+    </script>
+</body>
+</html>
